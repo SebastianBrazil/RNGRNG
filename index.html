@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RNG RNG</title>
+    <link rel="stylesheet" href="./dist/output.css">
+</head>
+
+<body>
+    <div style="display: none;"
+        class="bg-red-400 w-20 p-1 text-center my-2 rounded-lg flex justify-between ml-10 mr-10 text-xl"></div>
+
+    <div class="flex justify-center h-full min-h-screen bg-orange-300 pb-6">
+        <div class="w-7/12">
+            <div class="text-center">
+                <p class="my-10 bg-white rounded-lg py-1 text-3xl">Performance-Enhanced Random Name Generator</p>
+
+                <input class="mr-16 text-center" id="nameInput" placeholder="Add Name" type="text">
+                <input class="ml-16 text-center" id="groupInput" placeholder="Group Size (1 = random)" type="text">
+
+                <div class="flex justify-center m-5">
+                    <button id="nameInputBtn"
+                        class="mr-10 w-64 block bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 mb-6 bg-white">Submit
+                        Name</button>
+                    <button id="groupInputBtn"
+                        class="ml-10 w-64 block bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 mb-6 bg-white">Randomize
+                        Groups</button>
+                </div>
+            </div>
+
+            <div class="rounded-lg bg-slate-500 pb-5 pt-2 mx-1">
+                <div class="flex justify-center">
+                    <div class="my-2 py-1 text-center w-3/4 bg-blue-400">
+                        <p class="text-2xl">Total Amount of Names:
+                            <span id="numberCount"> </span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <div id="groupPlacement" class="mb-2 text-center w-3/4 bg-blue-400">
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <div id="nameAddition" class="text-center w-3/4 bg-blue-400">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script type="module" src="./scripts/app.js"></script>
+</body>
+
+</html>

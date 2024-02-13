@@ -47,7 +47,6 @@ function randomGroups(numby, isTrue) {
     groupPlacement.innerHTML = "";
 
     let namesArray = getLocalStorage();
-    let randomNum = Math.floor(Math.random() * namesArray.length);
     let intNumby = Number(numby);
 
     let holderDiv = document.createElement("div");
@@ -57,32 +56,65 @@ function randomGroups(numby, isTrue) {
     textP.className = "text-xl";
     if (isTrue) {
         textP.innerText = `You Chose The Group Size Of: ${numby}`;
+        holderDiv.appendChild(textP);
 
         let groupP = document.createElement('p');
         groupP.className = "text-xl";
 
         // intNumby is the group size, namesArray.length is how many people there are, remainder checks to see if there will be people left, sourt removes the remainder to have a balanced namesArray.length
-        // 9, 2
-        if(intNumby === 1){
+        // 11, 2
+        if (intNumby === 1) {
+            let randomNum = Math.floor(Math.random() * namesArray.length);
             groupP.innerText = namesArray[randomNum];
-        }else{
-            let remainder = namesArray.length % intNumby; 
+            holderDiv.appendChild(groupP);
+        } else {
+            let remainder = namesArray.length % intNumby;
+
+            let alertP = document.createElement('p');
+            alertP.className = "text-lg my-2 mx-5";
+
             let sourt = namesArray.length - remainder;
-            let groupsCount = namesArray.length/intNumby;
-            let shallowNamesArray = namesArray;
+            let groupsCount = sourt / intNumby;
+            let shadowNamesArray = namesArray;
 
-            
+            if (remainder > 1) {
+                groupsCount++;
+                alertP.innerText = `When making groups, there were ${remainder} names remaining. They were put into an unfilled group.`;
+                holderDiv.appendChild(alertP);
+                remainder = 0;
+            } else if (remainder === 1) {
+                alertP.innerText = `When making groups, there was ${remainder} name remaining. They were put into an existing group.`;
+                holderDiv.appendChild(alertP);
+            }
 
-        }
+            for (let i = 1; i < groupsCount + 1; i++) {
+                groupP.innerText += `Group ${i}: `;
+                for (let j = 0; j < intNumby; j++) {
+                    if (shadowNamesArray.length !== 0) {
+                        let randomNum = Math.floor(Math.random() * shadowNamesArray.length);
 
-        holderDiv.appendChild(textP);
-        holderDiv.appendChild(groupP);
+                        groupP.innerText += shadowNamesArray[randomNum] + " ";
+
+                        shadowNamesArray.splice(shadowNamesArray.indexOf(shadowNamesArray[randomNum]), 1);
+                    };
+                };
+                if (remainder !== 0) {
+                    let randomNum = Math.floor(Math.random() * shadowNamesArray.length);
+
+                    groupP.innerText += shadowNamesArray[randomNum] + " ";
+
+                    shadowNamesArray.splice(shadowNamesArray.indexOf(shadowNamesArray[randomNum]), 1);
+
+                    remainder--;
+                };
+                groupP.appendChild(document.createElement('br'));
+            };
+            holderDiv.appendChild(groupP);
+        };
     } else {
         textP.innerText = `You Chose A Group Size That Was Invalid Or Not A Number`;
-
         holderDiv.appendChild(textP);
     };
-
     groupPlacement.appendChild(holderDiv);
 };
 
